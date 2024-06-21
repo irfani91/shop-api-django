@@ -12,3 +12,4 @@ This application built using Django Framework
 - djangorestframework
 - django-filter
 - djangorestframework-simplejwt
+- docker 
