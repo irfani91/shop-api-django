@@ -3,7 +3,8 @@ from rest_framework.generics import (
     RetrieveAPIView, 
     CreateAPIView, 
     ListCreateAPIView, 
-    UpdateAPIView
+    UpdateAPIView,
+    RetrieveUpdateDestroyAPIView
 )
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.authentication import BasicAuthentication
@@ -11,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 
-from store.models import Category, Product, Cart
+from store.models import Category, Product, Cart, State, City
 from django.contrib.auth.models import User
 
 from .serializers import (
@@ -20,7 +21,9 @@ from .serializers import (
     ProductListSerializer,
     ProductDetailSerializer,
     RegisterSerializer,
-    CartSerializer
+    CartSerializer,
+    StateListSerializer,
+    CityListSerializer,
 )
 from .filters import ProductListFilter
 from store.helpers import convert_rupiah_to_float, rupiah_formatting
@@ -96,8 +99,28 @@ class CartListCreateView(ListCreateAPIView):
                         "results": []}
 
         return Response(response)
-
-class CartUpdateDestroyView(UpdateAPIView):
+class CartUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     serializer_class = CartSerializer
     queryset = Cart.objects.all()
     permission_classes = (IsAuthenticated,)
+
+class StateListView(ListAPIView):
+    serializer_class = StateListSerializer
+    queryset = State.objects.all()
+    permission_classes = (IsAuthenticated,)
+    search_fields = ['name']
+    filter_backends = (
+        SearchFilter,
+    )
+
+class CityListView(ListAPIView):
+    serializer_class = CityListSerializer
+    queryset = City.objects.all()
+    permission_classes = (IsAuthenticated,)
+    search_fields = ['name']
+    filterset_fields = ['state']
+    
+    filter_backends = (
+        SearchFilter,
+        DjangoFilterBackend
+    )

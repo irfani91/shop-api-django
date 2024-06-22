@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from store.models import Category, Product, Cart
+from store.models import Category, Product, Cart, State, City
 from store.helpers import rupiah_formatting
 
 from django.contrib.auth.password_validation import validate_password
@@ -147,3 +147,13 @@ class CartSerializer(serializers.ModelSerializer):
             fields['product_id'].required = False
 
         return fields
+
+class StateListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = State
+        fields = ('id', 'name',)
+
+class CityListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ('id', 'name',)

@@ -153,3 +153,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'UPDATE_LAST_LOGIN': True,
 }
+
+# Setting API RajaOngkir
+RAJAONGKIR_API_URL = 'api.rajaongkir.com'
+RAJAONGKIR_API_KEY = 'e575cf200869034fbc213c086b18bdca'
+RAJAONGKIR_ACCOUNT_PLAN = 'starter'
