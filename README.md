@@ -4,7 +4,7 @@
 
 This application built using Django Framework
 
-### Features 
+### Technologies 
 
 - Django
 - mysqlclient
