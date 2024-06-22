@@ -4,7 +4,7 @@
 
 This application built using Django Framework
 
-### System Requirement
+### Features 
 
 - Django
 - mysqlclient
@@ -12,4 +12,7 @@ This application built using Django Framework
 - djangorestframework
 - django-filter
 - djangorestframework-simplejwt
+- multi language
+- midtrans integration
+- rajaongkir integration
 - docker 
